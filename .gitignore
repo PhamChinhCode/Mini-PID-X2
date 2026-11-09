@@ -1,0 +1,34 @@
+# KiCad: lock, cache, backup, autosave
+~*.lck
+*.lck
+fp-info-cache
+*-backups/
+_autosave-*
+*.bak
+*.bak_*
+*.kicad_sch-bak
+*.kicad_pcb-bak
+\#auto_saved_files\#
+
+# KiCad local history (git riêng của KiCad) và trạng thái giao diện theo máy
+.history/
+*.kicad_prl
+
+# Bản sao lưu thủ công và file nén (đã có lịch sử git thay thế)
+backup_*/
+*.rar
+*.7z
+
+# Output cũ từ bản EasyEDA, không còn khớp với PCB KiCad hiện tại
+legacy/fab/
+
+# Python
+__pycache__/
+*.pyc
+
+# Hệ điều hành / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/

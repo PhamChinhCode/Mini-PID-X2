@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "MiniPID_Manual")(type "KiCad")(uri "${KIPRJMOD}/MiniPID_Manual.kicad_sym")(options "")(descr "Project symbols (MP2359 buck)"))
+)

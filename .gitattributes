@@ -1,0 +1,6 @@
+# Giữ LF cho mọi file text (KiCad ghi LF; script shell trong tools/ cần LF để chạy trên Linux)
+* text=auto eol=lf
+
+*.zip binary
+*.png binary
+*.epro binary
