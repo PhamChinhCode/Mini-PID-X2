@@ -2,6 +2,16 @@
 
 Board điều khiển 2 động cơ DC chổi than có encoder, chạy vòng PID trên STM32F103C8T6. Thiết kế bằng **KiCad 10**, kích thước **55 × 40 mm**.
 
+![Mini PID X2 - 3D](images/MiniPID_3d.png)
+
+## Hình ảnh
+
+| Mặt trên | Mặt dưới |
+|---|---|
+| ![Mặt trên](images/MiniPID_top.png) | ![Mặt dưới](images/MiniPID_bottom.png) |
+
+Mặt dưới có các pad test được in tên: SWD (3V3, DIO, CLK, GND), J8 (5V, CTL1–CTL3, GND) và chân của hai cổng động cơ M1/M2 (OUT1, GND, ENA, ENB, 3V3, OUT2).
+
 ## Tính năng
 
 - Điều khiển **2 động cơ DC** bằng 2 × **DRV8871** (H-bridge tích hợp, giới hạn dòng bằng R_ILIM 22 kΩ).
@@ -26,6 +36,7 @@ Board điều khiển 2 động cơ DC chổi than có encoder, chạy vòng PID
 | `BOM_MuaHang.csv` | Danh sách mua linh kiện đã gộp mã (32 mã, 89 linh kiện mỗi board), có mã LCSC |
 | `bom/ibom.html` | Interactive BOM, mở bằng trình duyệt để hỗ trợ hàn |
 | `gerber_to_order/` | Gerber nén zip để đặt mạch (JLCPCB, PCBWay, Elecrow, FusionPCB) |
+| `images/` | Ảnh render 3D, mặt trên và mặt dưới của PCB |
 | `tools/` | CLI `minipid` bọc `kicad-cli` và `pcbnew` (xem `tools/README.md`) |
 | `legacy/` | Dữ liệu gốc từ EasyEDA Pro (file `.epro`, symbol và footprint đã import) |
 
@@ -59,7 +70,7 @@ kicad-cli pcb drc --schematic-parity MiniPID_Manual.kicad_pcb
 
 ## Ghi chú thiết kế
 
-- Buck đặt R4 = 49,9 kΩ, R5 = 10 kΩ, cho Vout ≈ 4,85 V. Sau diode OR, rail +5V còn khoảng 4,5 V.
+- Buck đặt R4 = 51 kΩ, R5 = 10 kΩ, cho Vout ≈ 4,94 V. Sau diode OR, rail +5V còn khoảng 4,6 V.
 - Đầu ra buck dùng tụ 10 µF 50 V × 2; datasheet MP2359 khuyên khoảng 22 µF.
 - MP2359 đang ở trạng thái *Not recommended for new designs* (MPS khuyên chuyển sang MP2331H). Linh kiện vẫn có trên JLCPCB/LCSC: C14259, hoặc bản tương thích MSKSEMI C30197555.
 - Gerber trong `gerber_to_order/` được xuất ngày 2026-11-08. Nên xuất lại từ PCB hiện tại trước khi đặt mạch.
@@ -68,4 +79,6 @@ kicad-cli pcb drc --schematic-parity MiniPID_Manual.kicad_pcb
 
 - [ ] Lỗ bắt vít H1–H4 chưa gán net trong schematic (8 lỗi ERC).
 - [ ] Đường GND trên F.Cu chạm pad H4 (DRC báo chập mạch và vi phạm khe hở).
-- [ ] J1: mã LCSC là XT30PW nhưng footprint đang là terminal Phoenix 5.08 mm.
+- [ ] J1: mã LCSC là XT30PW nhưng footprint đang là terminal Phoenix 5.08 mm. Cần đổi mã LCSC cho đúng loại terminal block.
+- [ ] R4 trong schematic/PCB đã đổi giá trị thành 51 kΩ nhưng trường LCSC/MPN vẫn là mã 49.9k (C23184). Mã đúng là C23196 / 0603WAF5102T5E (`BOM_MuaHang.csv` đã sửa).
+- [ ] Silkscreen ghi "M1 Brigde" / "M2 Brigde", nên sửa thành "Bridge".
